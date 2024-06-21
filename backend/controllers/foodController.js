@@ -29,3 +29,18 @@ export const addFood = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+export const listFood = async (req, res) => {
+  try {
+    const foodList = await Food.find();
+    res.status(200).json({
+      success: true,
+      data: foodList,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error in fetching food items",
+    });
+  }
+};
