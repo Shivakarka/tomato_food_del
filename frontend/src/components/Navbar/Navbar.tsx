@@ -1,9 +1,13 @@
 import "./navbar.css";
 import { assets } from "../../assets/assets.ts";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({
+  setShowLogin,
+}: {
+  setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [menu, setMenu] = useState("home");
 
   return (
@@ -51,7 +55,7 @@ const Navbar = () => {
           <img src={assets.basket_icon} alt="cart icon" />
           <div className="dot"></div>
         </div>
-        <button>Sign in</button>
+        <button onClick={() => setShowLogin(true)}>Sign in</button>
       </div>
     </div>
   );
