@@ -13,7 +13,7 @@ type FoodItemProps = {
 };
 
 const FoodItem = ({ id, name, price, description, image }: FoodItemProps) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(
+  const { cartItems, addToCart, decreaseItemFromCart } = useContext(
     StoreContext
   ) as StoreContextType;
 
@@ -42,7 +42,7 @@ const FoodItem = ({ id, name, price, description, image }: FoodItemProps) => {
               <img
                 src={assets.remove_icon_red}
                 alt="item remove icon"
-                onClick={() => removeFromCart(id)}
+                onClick={() => decreaseItemFromCart(id)}
               />
               <p>{cartItems[id]}</p>
               <img

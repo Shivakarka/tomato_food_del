@@ -7,7 +7,9 @@ export type StoreContextType = {
   cartItems: Record<string, number>;
   setCartItems: React.Dispatch<React.SetStateAction<Record<string, number>>>;
   addToCart: (itemId: string) => void;
-  removeFromCart: (itemId: string) => void;
+  decreaseItemFromCart: (itemId: string) => void;
+  getTotalCartAmount: () => number;
+  deleteItemFromCart: (itemId: string) => void;
 };
 
 export const StoreContext = createContext<StoreContextType | null>(null);
@@ -23,8 +25,23 @@ const StoreContextProvider = (props: { children: React.ReactNode }) => {
     }
   };
 
-  const removeFromCart = (itemId: string) => {
+  const decreaseItemFromCart = (itemId: string) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+  };
+
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        let itemInfo = food_list.find((product) => product._id === item);
+        totalAmount += itemInfo!.price * cartItems[item];
+      }
+    }
+    return totalAmount;
+  };
+
+  const deleteItemFromCart = (itemId: string) => {
+    setCartItems((prev) => ({ ...prev, [itemId]: 0 }));
   };
 
   useEffect(() => {
@@ -36,7 +53,9 @@ const StoreContextProvider = (props: { children: React.ReactNode }) => {
     cartItems,
     setCartItems,
     addToCart,
-    removeFromCart,
+    decreaseItemFromCart,
+    getTotalCartAmount,
+    deleteItemFromCart,
   };
 
   return (
