@@ -44,3 +44,22 @@ export const listFood = async (req, res) => {
     });
   }
 };
+
+export const deleteFood = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const food = await Food.findById(id);
+    fs.unlinkSync("uploads/" + food.image, () => {});
+    await Food.findByIdAndDelete(id);
+    res.status(200).json({
+      success: true,
+      message: "Food item deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error in deleting food item",
+    });
+  }
+};
