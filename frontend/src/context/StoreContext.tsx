@@ -1,21 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets.ts";
-import { FoodItemType } from "../../types";
-
-export type StoreContextType = {
-  food_list: FoodItemType[];
-  cartItems: Record<string, number>;
-  setCartItems: React.Dispatch<React.SetStateAction<Record<string, number>>>;
-  addToCart: (itemId: string) => void;
-  decreaseItemFromCart: (itemId: string) => void;
-  getTotalCartAmount: () => number;
-  deleteItemFromCart: (itemId: string) => void;
-};
+import { StoreContextType } from "../../types.ts";
 
 export const StoreContext = createContext<StoreContextType | null>(null);
 
 const StoreContextProvider = (props: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<Record<string, number>>({});
+  const url = "http://localhost:4000";
+  const [token, setToken] = useState<string | null>(null);
 
   const addToCart = (itemId: string) => {
     if (!cartItems[itemId]) {
@@ -45,8 +37,11 @@ const StoreContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
+    const token = localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, []);
 
   const contextValue = {
     food_list,
@@ -56,6 +51,9 @@ const StoreContextProvider = (props: { children: React.ReactNode }) => {
     decreaseItemFromCart,
     getTotalCartAmount,
     deleteItemFromCart,
+    url,
+    token,
+    setToken,
   };
 
   return (
