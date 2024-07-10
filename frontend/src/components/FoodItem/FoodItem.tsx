@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { assets } from "../../assets/assets";
+import { assets } from "../../assets/assets.ts";
 
 import "./foodItem.css";
-import { StoreContext, StoreContextType } from "../../context/StoreContext";
+import { StoreContext } from "../../context/StoreContext.tsx";
+import { StoreContextType } from "../../../types.ts";
 
 type FoodItemProps = {
   id: string;
@@ -13,19 +14,22 @@ type FoodItemProps = {
 };
 
 const FoodItem = ({ id, name, price, description, image }: FoodItemProps) => {
-  const { cartItems, addToCart, decreaseItemFromCart } = useContext(
+  const { cartItems, addToCart, decreaseItemFromCart, url } = useContext(
     StoreContext
   ) as StoreContextType;
 
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        <img className="food-item-image" src={image} alt="" />
+        <img
+          className="food-item-image"
+          src={url + "/images/" + image}
+          alt=""
+        />
       </div>
       <div className="food-item-info">
-        <div className="food-item-name-rating">
+        <div className="food-item-name">
           <p>{name}</p>
-          <img src={assets.rating_starts} alt="" />
         </div>
         <p className="food-item-desc">{description}</p>
         <div className="food-item-price-counter">

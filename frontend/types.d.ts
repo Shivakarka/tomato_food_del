@@ -8,7 +8,7 @@ export type FoodItemType = {
 };
 
 export type StoreContextType = {
-  food_list: FoodItemType[];
+  foodList: FoodItemType[];
   cartItems: Record<string, number>;
   setCartItems: React.Dispatch<React.SetStateAction<Record<string, number>>>;
   addToCart: (itemId: string) => void;

@@ -16,19 +16,19 @@
   padding: 20px;
 }
 
-.food-item-name-rating {
+.food-item-name {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.food-item-name-rating p {
+.food-item-name p {
   font-size: 20px;
   font-weight: 500;
 }
 
-.food-item-name-rating img {
+.food-item-name img {
   width: 70px;
 }
 
