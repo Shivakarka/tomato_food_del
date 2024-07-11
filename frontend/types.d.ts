@@ -5,6 +5,7 @@ export type FoodItemType = {
   price: number;
   image: string;
   category: string;
+  quantity?: number;
 };
 
 export type StoreContextType = {
