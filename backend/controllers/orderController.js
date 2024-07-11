@@ -71,3 +71,13 @@ export const verifyOrder = async (req, res) => {
     res.status(500).json({ success: false, message: error });
   }
 };
+
+export const userOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ userId: req.body.userId });
+    res.status(200).json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error });
+  }
+};
