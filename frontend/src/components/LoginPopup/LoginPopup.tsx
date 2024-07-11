@@ -11,6 +11,10 @@ const LoginPopup = ({
 }) => {
   const [currState, setCurrState] = useState("Sign Up");
   const { url, setToken } = useContext(StoreContext)!;
+  const [error, setError] = useState({
+    state: false,
+    message: "",
+  });
 
   const [data, setData] = useState({
     name: "",
@@ -34,14 +38,22 @@ const LoginPopup = ({
       newUrl += "/api/user/register";
     }
 
-    const response = await axios.post(newUrl, data);
+    try {
+      const response = await axios.post(newUrl, data);
 
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
-    } else {
-      alert(response.data.message);
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error: any) {
+      console.log(error);
+      setError({
+        state: true,
+        message: error.response.data.message,
+      });
     }
   };
 
@@ -83,6 +95,7 @@ const LoginPopup = ({
             placeholder="Password"
             required
           />
+          {error.state && <p className="loginError">{error.message}</p>}
         </div>
         <button type="submit">
           {currState === "Sign Up" ? "Create account" : "Login"}

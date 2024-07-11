@@ -39,6 +39,11 @@
   gap: 20px;
 }
 
+.loginError {
+  color: red;
+  text-align: center;
+}
+
 .login-popup-inputs input {
   outline: none;
   border: 1px solid #c9c9c9;
