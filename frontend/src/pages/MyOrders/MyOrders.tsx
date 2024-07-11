@@ -54,6 +54,7 @@ const MyOrders = () => {
             </div>
           );
         })}
+        {data.length === 0 && <p>No Orders Yet</p>}
       </div>
     </div>
   );

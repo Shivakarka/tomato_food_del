@@ -57,11 +57,6 @@ const Navbar = ({
         </a>
       </ul>
       <div className="navbar-right">
-        <img
-          src={assets.search_icon}
-          className="navbar-search-icon"
-          alt="search icon"
-        />
         <div className="navbar-cart-icon">
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
