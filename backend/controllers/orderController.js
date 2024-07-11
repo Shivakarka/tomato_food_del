@@ -81,3 +81,13 @@ export const userOrders = async (req, res) => {
     res.status(500).json({ success: false, message: error });
   }
 };
+
+export const listOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({});
+    res.status(200).json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error });
+  }
+};
