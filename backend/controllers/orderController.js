@@ -55,3 +55,19 @@ export const placeOrder = async (req, res) => {
     res.status(500).json({ success: false, message: error });
   }
 };
+
+export const verifyOrder = async (req, res) => {
+  const { success, orderId } = req.body;
+  try {
+    if (success === "true") {
+      await Order.findByIdAndUpdate(orderId, { payment: true });
+      res.status(200).json({ success: true, message: "Payment successful" });
+    } else {
+      await Order.findByIdAndDelete(orderId);
+      res.status(400).json({ success: false, message: "Payment failed" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error });
+  }
+};
