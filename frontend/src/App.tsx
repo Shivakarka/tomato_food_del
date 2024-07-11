@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import LoginPopup from "./components/LoginPopup/LoginPopup.tsx";
 import Verify from "./pages/Verify/Verify.tsx";
 import MyOrders from "./pages/MyOrders/MyOrders.tsx";
+import NotFound from "./pages/NotFound/NotFound.tsx";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <Footer />
