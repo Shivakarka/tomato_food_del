@@ -6,7 +6,7 @@ export const StoreContext = createContext<StoreContextType | null>(null);
 
 const StoreContextProvider = (props: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<Record<string, number>>({});
-  const url = "http://localhost:4000";
+  const url = "https://tomato-food-del-backend.vercel.app";
   const [token, setToken] = useState<string | null>(null);
   const [foodList, setFoodList] = useState<FoodItemType[]>([]);
 
