@@ -3,6 +3,7 @@ import "./loginPopup.css";
 import { assets } from "../../assets/assets.ts";
 import { StoreContext } from "../../context/StoreContext.tsx";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const LoginPopup = ({
   setShowLogin,
@@ -42,6 +43,11 @@ const LoginPopup = ({
       const response = await axios.post(newUrl, data);
 
       if (response.data.success) {
+        if (currState === "Login") {
+          toast.success("Login successful");
+        } else {
+          toast.success("Registration successful");
+        }
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
         setShowLogin(false);
@@ -50,6 +56,9 @@ const LoginPopup = ({
       }
     } catch (error: any) {
       console.log(error);
+      if (error.message === "Network Error") {
+        toast.error(error.message);
+      }
       setError({
         state: true,
         message: error.response.data.message,

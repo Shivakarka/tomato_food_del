@@ -9,6 +9,8 @@ import LoginPopup from "./components/LoginPopup/LoginPopup.tsx";
 import Verify from "./pages/Verify/Verify.tsx";
 import MyOrders from "./pages/MyOrders/MyOrders.tsx";
 import NotFound from "./pages/NotFound/NotFound.tsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -22,6 +24,7 @@ function App() {
       {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <div className="app">
         <Navbar setShowLogin={setShowLogin} />
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />

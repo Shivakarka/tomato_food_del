@@ -3,6 +3,7 @@ import "./placeOrder.css";
 import { StoreContext } from "../../context/StoreContext.tsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, foodList, cartItems, url } =
@@ -30,7 +31,7 @@ const PlaceOrder = () => {
   const placeOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!token) {
-      alert("Please login to place order");
+      toast.error("Please login to place order");
       return;
     }
     const orderItems = [] as any;
@@ -57,7 +58,7 @@ const PlaceOrder = () => {
       }
     } catch (error) {
       console.log(error);
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
@@ -65,7 +66,7 @@ const PlaceOrder = () => {
 
   useEffect(() => {
     if (!token) {
-      alert("Please login to place order");
+      toast.error("Please login to place order");
       navigate("/cart");
     } else if (getTotalCartAmount() === 0) {
       navigate("/cart");

@@ -3,6 +3,7 @@ import { assets } from "../../assets/assets.ts";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext.tsx";
+import { toast } from "react-toastify";
 
 const Navbar = ({
   setShowLogin,
@@ -19,6 +20,7 @@ const Navbar = ({
     setToken(null);
     localStorage.removeItem("token");
     navigate("/");
+    toast.success("Logged out");
   };
 
   return (

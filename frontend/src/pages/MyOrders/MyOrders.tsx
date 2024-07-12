@@ -4,22 +4,28 @@ import axios from "axios";
 import { assets } from "../../assets/assets.ts";
 import { Order } from "../../../types";
 import "./myOrders.css";
+import { toast } from "react-toastify";
 
 const MyOrders = () => {
   const { url, token } = useContext(StoreContext)!;
   const [data, setData] = useState<Order[]>([]);
 
   const fetchOrders = async () => {
-    const response = await axios.post(
-      url + "/api/order/userorders",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    setData(response?.data?.data);
+    try {
+      const response = await axios.post(
+        url + "/api/order/userorders",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setData(response?.data?.data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Error");
+    }
   };
 
   useEffect(() => {
