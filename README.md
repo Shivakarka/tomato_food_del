@@ -59,12 +59,18 @@ npm run build
 
 ## Screenshots:
 
-![chrome-capture-2024-7-13 (1)](https://github.com/user-attachments/assets/bc7f2d36-eff9-4566-9816-e2d24edbdf2d)
-![chrome-capture-2024-7-13 (2)](https://github.com/user-attachments/assets/deede519-4120-41f4-9bd6-c8335288f03b)
-![chrome-capture-2024-7-13 (3)](https://github.com/user-attachments/assets/9fd6696e-505d-464c-8213-46b28a69c815)
-
 - Full page screenshot
 ![chrome-capture-2024-7-13](https://github.com/user-attachments/assets/1427a543-2c97-49d6-9899-6520ec9e33e6)
+
+- Cart Page
+![chrome-capture-2024-7-13 (3)](https://github.com/user-attachments/assets/9fd6696e-505d-464c-8213-46b28a69c815)
+
+- Login
+![chrome-capture-2024-7-13 (4)](https://github.com/user-attachments/assets/fa6c7995-d1f6-4da3-a143-47d7ba7ae15f)
+
+- Orders Page
+![chrome-capture-2024-7-13 (5)](https://github.com/user-attachments/assets/d55d26f6-0bcf-43c6-9129-e0d461a3b6e8)
+
 
 
 ## License
