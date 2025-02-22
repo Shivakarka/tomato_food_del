@@ -17,10 +17,24 @@ const port = process.env.PORT || 4000;
 // Middleware
 app.use(
   cors({
-    origin: "https://tomato-food-del.vercel.app", // your frontend URL or use localhost
-    methods: "GET,POST,PUT,DELETE", // allowed methods
+    origin: [
+      "http://localhost:5173",
+      "https://tomato-food-del.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Cookie",
+      "Origin",
+      "Accept",
+      "X-Requested-With",
+    ],
   })
 );
+
+app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
